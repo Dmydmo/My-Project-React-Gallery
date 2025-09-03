@@ -1,0 +1,22 @@
+.button {
+  background-color: beige;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgb(81, 238, 89);
+}
+.btnAddRandomImg {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  background-color: rgb(187, 207, 195);
+}
+.btnClin {
+  color: blueviolet;
+}
+.btnClinGalery {
+  position: relative;
+  margin-bottom: 10px;
+}
