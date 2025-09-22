@@ -3,22 +3,34 @@ import styles from "./ImageForm.module.css";
 import Button from "./UI/Button";
 
 function ImageForm({ addImg }) {
-  const [text, settext] = useState("");
+  const [datas, setDatas] = useState({ url: "", title: "" });
 
-  const handleChange = (event) => settext(event.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setDatas((data) => ({ ...data, [name]: value }));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addImg(text);
-    settext("");
+    addImg(datas.url, datas.title);
+    setDatas({ url: "", title: "" });
   };
   return (
     <div className={styles.formContainer}>
-      <form onSubmit={handleSubmit}>
+      <form className=" form-container" onSubmit={handleSubmit}>
         <input
           type="text"
-          value={text}
+          name="url"
+          value={datas.url}
           onChange={handleChange}
-          placeholder="Enter yous url"
+          placeholder="Enter  url of image"
+        />
+        <input
+          type="text"
+          name="title"
+          value={datas.title}
+          onChange={handleChange}
+          placeholder="Enter name of image"
         />
         <Button className={styles.btnAddForm} type="submit">
           Add imag

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import ImageForm from "./component/ImageForm";
 import Gallery from "./component/Gallery";
@@ -6,6 +7,7 @@ import AddRandonImg from "./component/AddRandomImg";
 
 function App() {
   const [urls, setUrls] = useState([]);
+
   useEffect(() => {
     const saved = localStorage.getItem("gallery");
     if (saved) {
@@ -20,17 +22,30 @@ function App() {
     try {
       const response = await fetch("https://picsum.photos/400/300");
       if (!response.ok) throw new Error("Network response was not ok");
-      setUrls((prev) => [response.url, ...prev]);
+
+      addImg(response.url);
     } catch (err) {
       console.error("Fetch random image failed:", err);
     }
   };
 
-  const addImg = (text) => {
-    setUrls([text, ...urls]);
+  const changeTitleInGallery = (id, draft) => {
+    setUrls((urls) =>
+      urls.map((url) => (url.id === id ? { ...url, title: draft } : url))
+    );
   };
-  const onDelete = (url) => {
-    setUrls(urls.filter((ur) => ur !== url));
+
+  const addImg = (url, title = "") => {
+    const newUriObj = {
+      url,
+      id: uuidv4(),
+      title,
+    };
+    setUrls([newUriObj, ...urls]);
+  };
+
+  const onDelete = (id) => {
+    setUrls(urls.filter((url) => url.id !== id));
   };
 
   const clinGallery = () => {
@@ -39,10 +54,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1> My Gelery</h1>
+      <h1> My Gallery</h1>
       <ImageForm addImg={addImg} />
       <AddRandonImg handleAddRandom={handleAddRandom} />
-      <Gallery urls={urls} clin={clinGallery} onDelete={onDelete} />
+      <Gallery
+        changeTitle={changeTitleInGallery}
+        urls={urls}
+        clin={clinGallery}
+        onDelete={onDelete}
+      />
     </div>
   );
 }
