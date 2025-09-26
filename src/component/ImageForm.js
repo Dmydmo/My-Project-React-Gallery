@@ -1,42 +1,47 @@
-import { useState } from "react";
-import styles from "./ImageForm.module.css";
-import Button from "./UI/Button";
+import { useState } from 'react';
+import styles from './ImageForm.module.css';
+import Button from './UI/Button';
 
 function ImageForm({ addImg }) {
-  const [datas, setDatas] = useState({ url: "", title: "" });
+  const [datas, setDatas] = useState({ url: '', title: '' });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setDatas((data) => ({ ...data, [name]: value }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDatas((d) => ({ ...d, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     addImg(datas.url, datas.title);
-    setDatas({ url: "", title: "" });
+    setDatas({ url: '', title: '' });
   };
+
   return (
     <div className={styles.formContainer}>
-      <form className=" form-container" onSubmit={handleSubmit}>
+      <h2 className={styles.cardTitle}>Add image</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
+          className={styles.input}
           type="text"
           name="url"
           value={datas.url}
           onChange={handleChange}
-          placeholder="Enter  url of image"
+          placeholder="Enter URL of image"
         />
         <input
+          className={styles.input}
           type="text"
           name="title"
           value={datas.title}
           onChange={handleChange}
-          placeholder="Enter name of image"
+          placeholder="Enter image title"
         />
         <Button className={styles.btnAddForm} type="submit">
-          Add imag
+          Add image
         </Button>
       </form>
     </div>
   );
 }
+
 export default ImageForm;

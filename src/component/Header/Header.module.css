@@ -1,0 +1,23 @@
+header {
+  position: relative;
+  height: 64px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+}
+h1 {
+  font-size: 2.2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  white-space: nowrap; /* чтобы не переносился; убери при длинных тайтлах */
+  pointer-events: none; /* опционально: клики проходят “сквозь” заголовок */
+}
+.divMenu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}

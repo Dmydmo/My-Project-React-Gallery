@@ -1,22 +1,89 @@
+/* База — основная кнопка (используется в форме Add image) */
 .button {
-  background-color: beige;
-  padding: 7px 15px;
-  border: none;
-  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 16px;
+
+  color: #e7ebf3;
+  background: linear-gradient(180deg, #2a2f36, #23272e);
+  border: 1px solid #2a2f36;
+  border-radius: 12px;
   cursor: pointer;
+  white-space: nowrap;
+
+  transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease,
+    border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 }
+
 .button:hover {
-  background-color: rgb(81, 238, 89);
+  background: linear-gradient(180deg, #303540, #262b33);
+  border-color: #3b424d;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
+
+.button:active {
+  transform: translateY(1px);
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(93, 134, 255, 0.18);
+}
+
+/* Рандом — тёмная вторичная */
 .btnAddRandomImg {
-  font-size: 1.2em;
+  font-size: 1.05em;
   margin-bottom: 30px;
-  background-color: rgb(187, 207, 195);
+  color: #e7ebf3;
+  background: #2f3540;
+  border: 1px solid #2a2f36;
+  border-radius: 12px;
 }
-.btnClin {
-  color: blueviolet;
+
+.btnAddRandomImg:hover {
+  background: #1f2328;
+  border-color: #3a414c;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
 }
+
+.btnAddRandomImg:active {
+  transform: translateY(1px);
+  background-color: #1b1e22;
+  color: #d6dbe7;
+}
+
+/* Очистить — контурная третичная */
 .btnClearGallery {
   position: relative;
   margin-bottom: 10px;
+
+  background: transparent;
+  color: #b1b8c6;
+  border: 1px solid #2a2f36;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.btnClearGallery:hover {
+  background: #171a1d;
+  border-color: #363c46;
+  color: #d0d6e3;
+}
+
+.btnClearGallery:active {
+  transform: translateY(1px);
+}
+
+/* Доп. утилита, если используешь отдельно — оставил как есть */
+.btnClin {
+  color: blueviolet;
 }

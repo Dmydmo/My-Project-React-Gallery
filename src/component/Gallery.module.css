@@ -1,35 +1,101 @@
 .galleryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding-top: 30px; /* фикс: было `padding: top 30px;` */
+}
 
-  padding: top 30px;
-}
 .galleryItem {
-  background-color: #1e1e1e;
-  padding: 5px;
-  padding-bottom: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  position: relative;
+  position: relative; /* для абсолютного позиционирования кнопки удаления */
+  background: #151719;
+  border: 1px solid #24272b;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
+  will-change: transform;
 }
+
+.galleryItem:hover,
+.galleryItem:focus-within {
+  transform: translateY(-2px);
+  border-color: #3e4652;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.galleryItem:active {
+  transform: translateY(-1px);
+}
+
+/* Превью: единое соотношение сторон и обрезка без искажений */
 .img {
-  max-width: 100%;
-  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  display: block;
+
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* убираем скругление у img — уже есть у .galleryItem */
+  border-radius: 0;
+  transition: transform 0.3s ease;
 }
+
+.galleryItem:hover .img {
+  transform: scale(1.02);
+}
+
+/* Кнопка удаления (иконка) — компактно в правом верхнем углу */
 .btnDelImg {
-  color: #eff77e;
-  opacity: 0.7;
   position: absolute;
-  bottom: 0px;
-  left: 1px;
-  margin-top: 10px;
-  padding: 6px 12px;
-  transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  top: 8px;
+  right: 8px;
+  color: #eff77e;
+  opacity: 0; /* скрыта по умолчанию */
+  padding: 6px;
+  border-radius: 8px;
+  background: rgba(21, 23, 25, 0.1);
+  backdrop-filter: blur(2px);
+
+  transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
+  cursor: pointer;
 }
+
+.galleryItem:hover .btnDelImg,
+.galleryItem:focus-within .btnDelImg {
+  opacity: 1; /* появляется только при взаимодействии */
+}
+
 .btnDelImg:hover {
-  color: rgb(228, 98, 76);
-  opacity: 1;
-  transform: scale(1.2);
+  color: #e4624c;
+  transform: scale(1.1);
+  background: rgba(21, 23, 25, 0.75);
+}
+/* Инлайн-редактор тайтла внутри карточки */
+.galleryItem input[type='text'] {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1b1e22;
+  color: #e7ebf3;
+  border: 1px solid #2a2f36;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 8px 10px 10px; /* внутренние отступы от краёв карточки */
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.galleryItem input[type='text']::placeholder {
+  color: #8d96a6;
+}
+.galleryItem input[type='text']:hover {
+  background: #1d2025;
+  border-color: #353b44;
+}
+.galleryItem input[type='text']:focus {
+  border-color: #5d86ff;
+  box-shadow: 0 0 0 3px rgba(93, 134, 255, 0.18);
 }

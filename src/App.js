@@ -1,31 +1,32 @@
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import "./App.css";
-import ImageForm from "./component/ImageForm";
-import Gallery from "./component/Gallery";
-import AddRandonImg from "./component/AddRandomImg";
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './App.css';
+import ImageForm from './component/ImageForm';
+import Gallery from './component/Gallery';
+import AddRandonImg from './component/AddRandomImg';
+import Header from './component/Header/Header';
 
 function App() {
   const [urls, setUrls] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("gallery");
+    const saved = localStorage.getItem('gallery');
     if (saved) {
       setUrls(JSON.parse(saved));
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem("gallery", JSON.stringify(urls));
+    localStorage.setItem('gallery', JSON.stringify(urls));
   }, [urls]);
 
   const handleAddRandom = async () => {
     try {
-      const response = await fetch("https://picsum.photos/400/300");
-      if (!response.ok) throw new Error("Network response was not ok");
+      const response = await fetch('https://picsum.photos/400/300');
+      if (!response.ok) throw new Error('Network response was not ok');
 
       addImg(response.url);
     } catch (err) {
-      console.error("Fetch random image failed:", err);
+      console.error('Fetch random image failed:', err);
     }
   };
 
@@ -35,7 +36,7 @@ function App() {
     );
   };
 
-  const addImg = (url, title = "") => {
+  const addImg = (url, title = '') => {
     const newUriObj = {
       url,
       id: uuidv4(),
@@ -52,9 +53,14 @@ function App() {
     setUrls([]);
   };
 
+  const onToggle = () => {
+    alert('opan menu');
+  };
+
   return (
     <div className="App">
-      <h1> My Gallery</h1>
+      <Header onToggle={onToggle} />
+
       <ImageForm addImg={addImg} />
       <AddRandonImg handleAddRandom={handleAddRandom} />
       <Gallery
