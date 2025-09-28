@@ -1,6 +1,3 @@
-h3 {
-  color: #5d86ff;
-}
 .galleryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -51,56 +48,32 @@ h3 {
   transform: scale(1.02);
 }
 
-.btnDelImg {
+.btnIcon {
   position: absolute;
   top: 3px;
-  right: 5px;
   color: #eff77e;
   opacity: 0; /* скрыта по умолчанию */
   padding: 3px;
   border-radius: 8px;
   background: rgba(21, 23, 25, 0.1);
   backdrop-filter: blur(2px);
-
   transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
   cursor: pointer;
 }
-
-.galleryItem:hover .btnDelImg,
-.galleryItem:focus-within .btnDelImg {
+.galleryItem:hover .btnIcon,
+.galleryItem:focus-within .btnIcon {
   opacity: 1;
 }
-
-.btnDelImg:hover {
+.btnIcon:hover {
   color: #e4624c;
   transform: scale(1.1);
   background: rgba(21, 23, 25, 0.75);
 }
-
-.btnDownloudImg {
-  position: absolute;
-  top: 3px;
+.btnDownloadImg {
   right: 30px;
-  color: #eff77e;
-  opacity: 0; /* скрыта по умолчанию */
-  padding: 3px;
-  border-radius: 8px;
-  background: rgba(21, 23, 25, 0.1);
-  backdrop-filter: blur(2px);
-
-  transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
-  cursor: pointer;
 }
-
-.galleryItem:hover .btnDownloudImg,
-.galleryItem:focus-within .btnDownloudImg {
-  opacity: 1;
-}
-
-.btnDownloudImg:hover {
-  color: #e4624c;
-  transform: scale(1.1);
-  background: rgba(21, 23, 25, 0.75);
+.btnDelImg {
+  right: 5px;
 }
 
 .galleryItem input[type='text'] {

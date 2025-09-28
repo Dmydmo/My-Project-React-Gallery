@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import styles from './Title.module.css';
 function Title({ className = ' ', onSubmit, value = '' }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState('');
@@ -34,6 +34,7 @@ function Title({ className = ' ', onSubmit, value = '' }) {
     return (
       <input
         autoFocus
+        className={styles.titleInput}
         value={draft}
         onChange={(el) => setDraft(el.target.value)}
         onKeyDown={handleKeyDown}
@@ -42,6 +43,10 @@ function Title({ className = ' ', onSubmit, value = '' }) {
       />
     );
   }
-  return <h3 onClick={toggleTitleInInput}>{display}</h3>;
+  return (
+    <h3 className={styles.imageTitle} onClick={toggleTitleInInput}>
+      {display}
+    </h3>
+  );
 }
 export default Title;

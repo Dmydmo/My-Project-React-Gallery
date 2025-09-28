@@ -1,0 +1,30 @@
+.imageTitle {
+  color: blueviolet;
+  padding: 5px 6px;
+}
+/* простой стиль для поля ввода заголовка */
+.titleInput {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1;
+  background: #fff;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.titleInput::placeholder {
+  color: #9aa3af;
+}
+
+.titleInput:hover {
+  border-color: #c3c8d4;
+}
+
+.titleInput:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.15);
+}

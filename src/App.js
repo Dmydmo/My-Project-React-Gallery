@@ -7,7 +7,7 @@ import AddRandomImg from './component/AddRandomImg';
 import Header from './component/Header/Header';
 
 function App() {
-  const [urls, setUrls] = useState([]);
+  const [cards, setcards] = useState([]);
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const onToggleMenu = () => {
@@ -16,12 +16,12 @@ function App() {
   useEffect(() => {
     const saved = localStorage.getItem('gallery');
     if (saved) {
-      setUrls(JSON.parse(saved));
+      setcards(JSON.parse(saved));
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem('gallery', JSON.stringify(urls));
-  }, [urls]);
+    localStorage.setItem('gallery', JSON.stringify(cards));
+  }, [cards]);
 
   const handleAddRandom = async () => {
     try {
@@ -35,8 +35,8 @@ function App() {
   };
 
   const changeTitleInGallery = (id, draft) => {
-    setUrls((urls) =>
-      urls.map((url) => (url.id === id ? { ...url, title: draft } : url))
+    setcards((cards) =>
+      cards.map((card) => (card.id === id ? { ...card, title: draft } : card))
     );
   };
 
@@ -46,15 +46,15 @@ function App() {
       id: uuidv4(),
       title,
     };
-    setUrls([newUriObj, ...urls]);
+    setcards([newUriObj, ...cards]);
   };
 
   const onDelete = (id) => {
-    setUrls(urls.filter((url) => url.id !== id));
+    setcards(cards.filter((card) => card.id !== id));
   };
 
   const clearGallery = () => {
-    setUrls([]);
+    setcards([]);
   };
 
   return (
@@ -65,7 +65,7 @@ function App() {
       <AddRandomImg handleAddRandom={handleAddRandom} />
       <Gallery
         changeTitle={changeTitleInGallery}
-        urls={urls}
+        cards={cards}
         onClear={clearGallery}
         onDelete={onDelete}
       />
