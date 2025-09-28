@@ -1,21 +1,20 @@
-import { useState } from "react";
-import styles from "./Title.module.css";
+import { useState } from 'react';
 
-function Title({ className = " ", onSubmit, value = "" }) {
+function Title({ className = ' ', onSubmit, value = '' }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useState('');
 
-  const display = value.trim() ? value : "No title";
+  const display = value.trim() ? value : 'No title';
 
   const toggleTitleInInput = () => {
-    setDraft(value.trim() ? value : "");
+    setDraft(value.trim() ? value : '');
     setIsEditing(true);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.currentTarget.blur();
-    } else if (e.key === "Escape") {
+    } else if (e.key === 'Escape') {
       cancelEdit();
     }
   };
@@ -27,7 +26,7 @@ function Title({ className = " ", onSubmit, value = "" }) {
   };
 
   const cancelEdit = () => {
-    setDraft(value || "");
+    setDraft(value || '');
     setIsEditing(false);
   };
 
@@ -43,10 +42,6 @@ function Title({ className = " ", onSubmit, value = "" }) {
       />
     );
   }
-  return (
-    <h3 onClick={toggleTitleInInput} className={`${styles.h3} ${className}`}>
-      {display}
-    </h3>
-  );
+  return <h3 onClick={toggleTitleInInput}>{display}</h3>;
 }
 export default Title;

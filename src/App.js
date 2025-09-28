@@ -3,12 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import ImageForm from './component/ImageForm';
 import Gallery from './component/Gallery';
-import AddRandonImg from './component/AddRandomImg';
+import AddRandomImg from './component/AddRandomImg';
 import Header from './component/Header/Header';
 
 function App() {
   const [urls, setUrls] = useState([]);
+  const [isOpenMenu, setOpenMenu] = useState(false);
 
+  const onToggleMenu = () => {
+    setOpenMenu((prev) => !prev);
+  };
   useEffect(() => {
     const saved = localStorage.getItem('gallery');
     if (saved) {
@@ -49,24 +53,20 @@ function App() {
     setUrls(urls.filter((url) => url.id !== id));
   };
 
-  const clinGallery = () => {
+  const clearGallery = () => {
     setUrls([]);
-  };
-
-  const onToggle = () => {
-    alert('opan menu');
   };
 
   return (
     <div className="App">
-      <Header onToggle={onToggle} />
+      <Header onToggleMenu={onToggleMenu} isOpenMenu={isOpenMenu} />
 
       <ImageForm addImg={addImg} />
-      <AddRandonImg handleAddRandom={handleAddRandom} />
+      <AddRandomImg handleAddRandom={handleAddRandom} />
       <Gallery
         changeTitle={changeTitleInGallery}
         urls={urls}
-        clin={clinGallery}
+        onClear={clearGallery}
         onDelete={onDelete}
       />
     </div>

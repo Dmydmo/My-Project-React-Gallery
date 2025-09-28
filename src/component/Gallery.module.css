@@ -1,14 +1,17 @@
+h3 {
+  color: #5d86ff;
+}
 .galleryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   max-width: 1200px;
   margin: 0 auto 40px;
-  padding-top: 30px; /* фикс: было `padding: top 30px;` */
+  padding-top: 20px;
 }
 
 .galleryItem {
-  position: relative; /* для абсолютного позиционирования кнопки удаления */
+  position: relative;
   background: #151719;
   border: 1px solid #24272b;
   border-radius: 12px;
@@ -32,7 +35,6 @@
   transform: translateY(-1px);
 }
 
-/* Превью: единое соотношение сторон и обрезка без искажений */
 .img {
   width: 100%;
   height: auto;
@@ -40,7 +42,7 @@
 
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  /* убираем скругление у img — уже есть у .galleryItem */
+
   border-radius: 0;
   transition: transform 0.3s ease;
 }
@@ -49,14 +51,13 @@
   transform: scale(1.02);
 }
 
-/* Кнопка удаления (иконка) — компактно в правом верхнем углу */
 .btnDelImg {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 3px;
+  right: 5px;
   color: #eff77e;
   opacity: 0; /* скрыта по умолчанию */
-  padding: 6px;
+  padding: 3px;
   border-radius: 8px;
   background: rgba(21, 23, 25, 0.1);
   backdrop-filter: blur(2px);
@@ -67,7 +68,7 @@
 
 .galleryItem:hover .btnDelImg,
 .galleryItem:focus-within .btnDelImg {
-  opacity: 1; /* появляется только при взаимодействии */
+  opacity: 1;
 }
 
 .btnDelImg:hover {
@@ -75,7 +76,33 @@
   transform: scale(1.1);
   background: rgba(21, 23, 25, 0.75);
 }
-/* Инлайн-редактор тайтла внутри карточки */
+
+.btnDownloudImg {
+  position: absolute;
+  top: 3px;
+  right: 30px;
+  color: #eff77e;
+  opacity: 0; /* скрыта по умолчанию */
+  padding: 3px;
+  border-radius: 8px;
+  background: rgba(21, 23, 25, 0.1);
+  backdrop-filter: blur(2px);
+
+  transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.galleryItem:hover .btnDownloudImg,
+.galleryItem:focus-within .btnDownloudImg {
+  opacity: 1;
+}
+
+.btnDownloudImg:hover {
+  color: #e4624c;
+  transform: scale(1.1);
+  background: rgba(21, 23, 25, 0.75);
+}
+
 .galleryItem input[type='text'] {
   width: 100%;
   box-sizing: border-box;
@@ -84,7 +111,7 @@
   border: 1px solid #2a2f36;
   border-radius: 10px;
   padding: 10px 12px;
-  margin: 8px 10px 10px; /* внутренние отступы от краёв карточки */
+  margin: 8px 10px 10px;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
