@@ -3,7 +3,7 @@ import Menu from '../Menu';
 import IconBtn from '../UI/IconBtn';
 import styles from './Header.module.css';
 
-function Header({ onToggleMenu, isOpenMenu }) {
+function Header({ onToggleMenu, isOpenMenu, onClear }) {
   const menuRef = useRef(null);
   useEffect(() => {
     if (!isOpenMenu) return;
@@ -27,7 +27,7 @@ function Header({ onToggleMenu, isOpenMenu }) {
             onClick={onToggleMenu}
           />
         ) : (
-          <Menu onToggleMenu={onToggleMenu} />
+          <Menu onToggleMenu={onToggleMenu} onClear={onClear} />
         )}
       </div>
       <h1> My Gallery</h1>

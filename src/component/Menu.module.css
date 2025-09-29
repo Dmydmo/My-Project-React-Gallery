@@ -1,7 +1,10 @@
 .menuContainer {
   position: absolute;
   top: 18px; /* под кнопкой */
-  left: 20px; /* слева (иконка у тебя слева) */
+  left: 20px;
+  display: flex;
+  flex-direction: column; /* столбик */
+  gap: 10px; /* расстояние между кнопками */
   margin-top: 8px;
   z-index: 800;
   background: #222; /* темная тема судя по скрину */
@@ -10,19 +13,4 @@
   padding: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   min-width: 200px;
-}
-.menuContainer ul {
-  list-style: none;
-  margin: 0;
-  padding: 4px 0;
-}
-.menuContainer li {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.menuContainer li:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-.inProject {
-  color: darkslategrey;
 }

@@ -59,14 +59,17 @@ function App() {
 
   return (
     <div className="App">
-      <Header onToggleMenu={onToggleMenu} isOpenMenu={isOpenMenu} />
+      <Header
+        onToggleMenu={onToggleMenu}
+        isOpenMenu={isOpenMenu}
+        onClear={clearGallery}
+      />
 
       <ImageForm addImg={addImg} />
       <AddRandomImg handleAddRandom={handleAddRandom} />
       <Gallery
         changeTitle={changeTitleInGallery}
         cards={cards}
-        onClear={clearGallery}
         onDelete={onDelete}
       />
     </div>
