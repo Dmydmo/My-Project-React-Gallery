@@ -4,6 +4,7 @@ import ClearGalleryBtn from './ClearGalleryBtn';
 import Title from './Title';
 
 function Gallery({ cards, onDelete, onClear, changeTitle }) {
+  const { url, title } = cards;
   const handleDownload = (src, filename = 'image') => {
     const a = document.createElement('a');
     a.href = src;
@@ -33,15 +34,23 @@ function Gallery({ cards, onDelete, onClear, changeTitle }) {
               title="Change title"
             />
 
-            <RiDeleteBin2Line
+            <button
+              type="button"
               className={`${styles.btnIcon} ${styles.btnDelImg}`}
-              title="Delete img"
-              onClick={() => onDelete(card.id)}
-            />
-            <RiDownload2Line
-              onClick={() => handleDownload(card.url)}
+              aria-label="Delete image"
+              onClick={onDelete}
+            >
+              <RiDeleteBin2Line aria-hidden="true" focusable="false" />
+            </button>
+
+            <button
+              type="button"
               className={`${styles.btnIcon} ${styles.btnDownloadImg}`}
-            />
+              aria-label="Download image"
+              onClick={() => handleDownload(url, title)}
+            >
+              <RiDownload2Line aria-hidden="true" focusable="false" />
+            </button>
           </div>
         ))}
       </div>
