@@ -4,19 +4,33 @@ import ClearGalleryBtn from './ClearGalleryBtn';
 import Title from './Title';
 
 function Gallery({ cards, onDelete, onClear, changeTitle }) {
-  const { url, title } = cards;
-  const handleDownload = (src, filename = 'image') => {
-    const a = document.createElement('a');
-    a.href = src;
-    a.download = filename; // браузер попытается скачать
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  const handleDownload = async (src, filename = 'image') => {
+    try {
+      const res = await fetch(src, { mode: 'cors' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const blob = await res.blob();
+      const objectUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(objectUrl);
+    } catch (err) {
+      const a = document.createElement('a');
+      a.href = src;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
   };
 
-  if (cards.length === 0) {
-    return null;
-  }
   return (
     <div>
       <ClearGalleryBtn onClear={onClear} />
@@ -38,7 +52,7 @@ function Gallery({ cards, onDelete, onClear, changeTitle }) {
               type="button"
               className={`${styles.btnIcon} ${styles.btnDelImg}`}
               aria-label="Delete image"
-              onClick={onDelete}
+              onClick={() => onDelete(card.id)}
             >
               <RiDeleteBin2Line aria-hidden="true" focusable="false" />
             </button>
@@ -47,7 +61,7 @@ function Gallery({ cards, onDelete, onClear, changeTitle }) {
               type="button"
               className={`${styles.btnIcon} ${styles.btnDownloadImg}`}
               aria-label="Download image"
-              onClick={() => handleDownload(url, title)}
+              onClick={() => handleDownload(card.url, card.title || 'image')}
             >
               <RiDownload2Line aria-hidden="true" focusable="false" />
             </button>
