@@ -3,18 +3,15 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-
   font-size: 1rem;
   font-weight: 600;
   padding: 12px 16px;
-
   color: #e7ebf3;
   background: linear-gradient(180deg, #2a2f36, #23272e);
   border: 1px solid #2a2f36;
   border-radius: 12px;
   cursor: pointer;
   white-space: nowrap;
-
   transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease,
     border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 }
@@ -61,7 +58,6 @@
 
 .btnClearGallery {
   position: relative;
-  /* margin-bottom: 10px; */
 
   background: transparent;
   color: #b1b8c6;
@@ -78,8 +74,4 @@
 
 .btnClearGallery:active {
   transform: translateY(1px);
-}
-
-.btnClin {
-  color: blueviolet;
 }

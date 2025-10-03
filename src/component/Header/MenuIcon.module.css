@@ -1,0 +1,24 @@
+.menuBtn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.menuSvg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.15s ease, color 0.15s ease;
+  color: #e7ebf3;
+  pointer-events: none;
+}
+
+.menuBtn:hover .menuSvg {
+  transform: scale(1.1);
+  color: #79ecbc;
+}

@@ -12,8 +12,8 @@ h1 {
   top: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
-  white-space: nowrap; /* чтобы не переносился; убери при длинных тайтлах */
-  pointer-events: none; /* опционально: клики проходят “сквозь” заголовок */
+  white-space: nowrap;
+  pointer-events: none;
 }
 .divMenu {
   display: flex;
