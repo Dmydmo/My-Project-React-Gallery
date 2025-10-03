@@ -26,7 +26,6 @@
   align-items: center;
 }
 
-/* Привязываемся к name, обёртки не требуются */
 .form input[name='url'] {
   grid-area: url;
 }
@@ -34,10 +33,9 @@
   grid-area: title;
 }
 .btnAddForm {
-  grid-area: button;
+  color: chartreuse;
 }
 
-/* Визуал инпутов — тёмный стиль */
 .input {
   background: #1b1e22;
   color: #e7ebf3;
@@ -58,51 +56,3 @@
   border-color: #5d86ff;
   box-shadow: 0 0 0 3px rgba(93, 134, 255, 0.18);
 }
-
-/* Кнопка — как на мокапе */
-.btnAddForm {
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 1px solid #2a2f36;
-  background: linear-gradient(180deg, #2a2f36, #23272e);
-  color: #e7ebf3;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: transform 0.08s, box-shadow 0.15s, background 0.15s,
-    border-color 0.15s, opacity 0.15s;
-}
-.btnAddForm:hover {
-  background: linear-gradient(180deg, #303540, #262b33);
-  border-color: #3b424d;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-}
-.btnAddForm:active {
-  transform: translateY(1px);
-}
-.btnAddForm:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Адаптив: всё в колонку
-@media (max-width: 680px) {
-  .form {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'url'
-      'title'
-      'button';
-  }
-  .btnAddForm {
-    width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .input,
-  .btnAddForm {
-    transition: none;
-  }
-} */

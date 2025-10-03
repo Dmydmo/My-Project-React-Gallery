@@ -1,0 +1,17 @@
+.btnIcon {
+  position: absolute;
+  top: 3px;
+  color: #eff77e;
+  padding: 3px;
+  border-radius: 8px;
+  background: rgba(21, 23, 25, 0.1);
+  backdrop-filter: blur(2px);
+  transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.btnIcon:hover {
+  color: #e4624c;
+  transform: scale(1.1);
+  background: rgba(21, 23, 25, 0.75);
+}

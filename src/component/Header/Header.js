@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Menu from '../Menu';
-import IconBtn from '../UI/IconBtn';
 import styles from './Header.module.css';
+import MenuIcon from './MenuIcon';
 
 function Header({ onToggleMenu, isOpenMenu, onClear }) {
   const menuRef = useRef(null);
@@ -20,12 +20,7 @@ function Header({ onToggleMenu, isOpenMenu, onClear }) {
     <header>
       <div className={styles.divMenu} ref={menuRef}>
         {!isOpenMenu ? (
-          <IconBtn
-            icon="menu"
-            title="Menu"
-            classKey="headerMenu"
-            onClick={onToggleMenu}
-          />
+          <MenuIcon onClick={onToggleMenu} />
         ) : (
           <Menu onToggleMenu={onToggleMenu} onClear={onClear} />
         )}

@@ -1,5 +1,5 @@
-import styles from "./Button.module.css";
-function Button({ children, className = " ", disabled = false, ...props }) {
+import styles from './Button.module.css';
+function Button({ children, className = ' ', disabled = false, ...props }) {
   return (
     <button
       {...props}

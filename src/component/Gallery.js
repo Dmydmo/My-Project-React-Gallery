@@ -2,6 +2,7 @@ import { RiDeleteBin2Line, RiDownload2Line } from 'react-icons/ri';
 import styles from './Gallery.module.css';
 import BtnDownloadAll from './BtnDownloadAll';
 import Title from './Title';
+import IconButton from './UI/IconnButton';
 
 function Gallery({ cards, onDelete, changeTitle }) {
   const handleDownload = async (src, filename = 'image') => {
@@ -48,23 +49,20 @@ function Gallery({ cards, onDelete, changeTitle }) {
               title="Change title"
             />
 
-            <button
-              type="button"
-              className={`${styles.btnIcon} ${styles.btnDelImg}`}
-              aria-label="Delete image"
+            <IconButton
+              icon={<RiDeleteBin2Line aria-hidden="true" focusable="false" />}
               onClick={() => onDelete(card.id)}
-            >
-              <RiDeleteBin2Line aria-hidden="true" focusable="false" />
-            </button>
-
-            <button
-              type="button"
-              className={`${styles.btnIcon} ${styles.btnDownloadImg}`}
+              aria-label="Delete image"
+              className={`${styles.actionBtn} ${styles.btnDelImg}`}
+            />
+            <IconButton
+              aria-hidden="true"
+              focusable="false"
+              icon={<RiDownload2Line />}
+              className={`${styles.actionBtn} ${styles.btnDownloadImg}`}
               aria-label="Download image"
               onClick={() => handleDownload(card.url, card.title || 'image')}
-            >
-              <RiDownload2Line aria-hidden="true" focusable="false" />
-            </button>
+            />
           </div>
         ))}
       </div>
