@@ -2,7 +2,8 @@ import { RiDeleteBin2Line, RiDownload2Line } from 'react-icons/ri';
 import styles from './Gallery.module.css';
 import BtnDownloadAll from './BtnDownloadAll';
 import Title from './Title';
-import IconButton from './UI/IconnButton';
+import IconButton from '../UI/IconnButton';
+import EmptyGellery from './EmptyGellery';
 
 function Gallery({ cards, onDelete, changeTitle }) {
   const handleDownload = async (src, filename = 'image') => {
@@ -34,7 +35,8 @@ function Gallery({ cards, onDelete, changeTitle }) {
 
   return (
     <div>
-      <BtnDownloadAll cards={cards} />
+      {cards.length > 0 ? <BtnDownloadAll cards={cards} /> : <EmptyGellery />}
+
       <div className={styles.galleryContainer}>
         {cards.map((card) => (
           <div className={styles.galleryItem} key={card.id}>

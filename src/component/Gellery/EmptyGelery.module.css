@@ -1,0 +1,39 @@
+.divEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+  padding: 20px 16px;
+  max-width: 460px;
+  border: 1px solid #24272b;
+  border-radius: 12px;
+  background: rgba(21, 23, 25, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  color: #e7ebf3;
+  margin: 22px auto 24px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.divEmpty:hover {
+  border-color: #3e4652;
+}
+
+.Title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.Icon {
+  font-size: 30px;
+  color: #8d96a6;
+  opacity: 0.9;
+  transition: transform 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+
+.divEmpty:hover .Icon {
+  transform: translateY(-1px) scale(1.05);
+  color: #e4624c;
+  opacity: 1;
+}

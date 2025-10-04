@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import Menu from '../Menu';
+import Menu from './Menu';
 import styles from './Header.module.css';
 import MenuIcon from './MenuIcon';
 

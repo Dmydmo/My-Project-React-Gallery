@@ -1,5 +1,5 @@
-import Button from './UI/Button.js';
-import styles from './UI/Button.module.css';
+import Button from '../UI/Button';
+import styles from '../UI/Button.module.css';
 import JSZip from 'jszip';
 
 function BtnDownloadAll({ cards }) {

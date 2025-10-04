@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import ImageForm from './component/ImageForm';
-import Gallery from './component/Gallery';
+import Gallery from './component/Gellery/Gallery';
 import AddRandomImg from './component/AddRandomImg';
 import Header from './component/Header/Header';
 
@@ -25,7 +25,7 @@ function App() {
 
   const handleAddRandom = async () => {
     try {
-      const response = await fetch('https://picsum.photos/400/300');
+      const response = await fetch('https://picsum.photos/1920/1080');
       if (!response.ok) throw new Error('Network response was not ok');
 
       addImg(response.url);
