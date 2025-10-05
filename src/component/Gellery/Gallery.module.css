@@ -1,10 +1,10 @@
 .galleryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  gap: 12px;
   max-width: 1200px;
   margin: 0 auto 40px;
-  padding-top: 20px;
+  padding-top: 7px;
 }
 
 .galleryItem {
@@ -71,11 +71,6 @@
   box-shadow: 0 0 0 3px rgba(93, 134, 255, 0.18);
 }
 
-.actionBtn {
-  opacity: 0;
-  transition: transform 0.2s, color 0.2s, opacity 0.2s, background 0.2s;
-}
-
 .galleryItem:hover .actionBtn,
 .galleryItem:focus-within .actionBtn {
   opacity: 1;
@@ -85,4 +80,13 @@
 }
 .btnDelImg {
   right: 5px;
+}
+.topBar {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  background: #151719;
+  border: 1px solid #24272b;
+  border-radius: 12px;
+  padding: 8px 10px;
 }

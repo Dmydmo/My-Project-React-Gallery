@@ -3,7 +3,8 @@ import styles from './Gallery.module.css';
 import BtnDownloadAll from './BtnDownloadAll';
 import Title from './Title';
 import IconButton from '../UI/IconnButton';
-import EmptyGellery from './EmptyGellery';
+import EmptyGallery from './EmptyGallery';
+import SowerCountImage from './ImagesCounter';
 
 function Gallery({ cards, onDelete, changeTitle }) {
   const handleDownload = async (src, filename = 'image') => {
@@ -35,7 +36,14 @@ function Gallery({ cards, onDelete, changeTitle }) {
 
   return (
     <div>
-      {cards.length > 0 ? <BtnDownloadAll cards={cards} /> : <EmptyGellery />}
+      {cards.length > 0 ? (
+        <div className={styles.topBar}>
+          <BtnDownloadAll cards={cards} />
+          <SowerCountImage counter={cards.length} />
+        </div>
+      ) : (
+        <EmptyGallery />
+      )}
 
       <div className={styles.galleryContainer}>
         {cards.map((card) => (
@@ -63,7 +71,9 @@ function Gallery({ cards, onDelete, changeTitle }) {
               icon={<RiDownload2Line />}
               className={`${styles.actionBtn} ${styles.btnDownloadImg}`}
               aria-label="Download image"
-              onClick={() => handleDownload(card.url, card.title || 'image')}
+              onClick={() =>
+                handleDownload(card.url, (card.title || 'image') + '.jpg')
+              }
             />
           </div>
         ))}

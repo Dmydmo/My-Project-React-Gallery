@@ -9,28 +9,33 @@ import Header from './component/Header/Header';
 function App() {
   const [cards, setcards] = useState([]);
   const [isOpenMenu, setOpenMenu] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onToggleMenu = () => {
     setOpenMenu((prev) => !prev);
   };
+
   useEffect(() => {
     const saved = localStorage.getItem('gallery');
     if (saved) {
       setcards(JSON.parse(saved));
     }
   }, []);
+
   useEffect(() => {
     localStorage.setItem('gallery', JSON.stringify(cards));
   }, [cards]);
 
   const handleAddRandom = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('https://picsum.photos/1920/1080');
       if (!response.ok) throw new Error('Network response was not ok');
-
       addImg(response.url);
     } catch (err) {
       console.error('Fetch random image failed:', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,7 +71,7 @@ function App() {
       />
 
       <ImageForm addImg={addImg} />
-      <AddRandomImg handleAddRandom={handleAddRandom} />
+      <AddRandomImg isLoading={isLoading} handleAddRandom={handleAddRandom} />
       <Gallery
         changeTitle={changeTitleInGallery}
         cards={cards}
