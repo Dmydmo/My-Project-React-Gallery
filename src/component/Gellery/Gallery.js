@@ -6,7 +6,7 @@ import IconButton from '../UI/IconnButton';
 import EmptyGallery from './EmptyGallery';
 import SowerCountImage from './ImagesCounter';
 
-function Gallery({ cards, onDelete, changeTitle }) {
+function Gallery({ cards, isLoading, onDelete, changeTitle }) {
   const handleDownload = async (src, filename = 'image') => {
     try {
       const res = await fetch(src, { mode: 'cors' });

@@ -9,7 +9,8 @@ import Header from './component/Header/Header';
 function App() {
   const [cards, setcards] = useState([]);
   const [isOpenMenu, setOpenMenu] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingRandom, setIsLoadingRandom] = useState(false);
+  // const [isLoadingAll, setIsLoadingAll] = useState(false);
 
   const onToggleMenu = () => {
     setOpenMenu((prev) => !prev);
@@ -28,14 +29,14 @@ function App() {
 
   const handleAddRandom = async () => {
     try {
-      setIsLoading(true);
+      setIsLoadingRandom(true);
       const response = await fetch('https://picsum.photos/1920/1080');
       if (!response.ok) throw new Error('Network response was not ok');
       addImg(response.url);
     } catch (err) {
       console.error('Fetch random image failed:', err);
     } finally {
-      setIsLoading(false);
+      setIsLoadingRandom(false);
     }
   };
 
@@ -51,7 +52,8 @@ function App() {
       id: uuidv4(),
       title,
     };
-    setcards([newUriObj, ...cards]);
+    const hasDavid = cards.some((card) => card.url === url);
+    !hasDavid && setcards([newUriObj, ...cards]);
   };
 
   const onDelete = (id) => {
@@ -71,8 +73,12 @@ function App() {
       />
 
       <ImageForm addImg={addImg} />
-      <AddRandomImg isLoading={isLoading} handleAddRandom={handleAddRandom} />
+      <AddRandomImg
+        isLoading={isLoadingRandom}
+        handleAddRandom={handleAddRandom}
+      />
       <Gallery
+        // isLoading={isLoadingAll}
         changeTitle={changeTitleInGallery}
         cards={cards}
         onDelete={onDelete}

@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import Button from '../UI/Button';
-import styles from '../UI/Button.module.css';
+import styles from './BtnDownloadAll.module.css';
 import JSZip from 'jszip';
 
 function BtnDownloadAll({ cards }) {
+  const [isLoadingAll, setIsLoadingAll] = useState(false);
   async function downloadZip() {
+    setIsLoadingAll(true);
     const zip = new JSZip();
 
     const extFromUrl = (u) => {
@@ -67,23 +70,28 @@ function BtnDownloadAll({ cards }) {
       URL.revokeObjectURL(link.href);
     } catch (e) {
       console.error('Ошибка генерации ZIP:', e);
-    }
-
-    if (errors.length) {
-      console.warn('Пропущены из-за ошибок:', errors);
+      if (errors.length) {
+        console.warn('Пропущены из-за ошибок:', errors);
+      }
+    } finally {
+      setIsLoadingAll(false);
     }
   }
 
   return (
     <Button
-      className={styles.btnClearGallery}
+      className={styles.btnDownloadAll}
       onClick={downloadZip}
       aria-label="Download all images as ZIP"
       title="Download all as ZIP"
       disabled={!cards.length}
       type="button"
     >
-      Download All (ZIP)
+      {isLoadingAll ? (
+        <span className={styles.spinner}></span>
+      ) : (
+        ' Download All (ZIP)'
+      )}
     </Button>
   );
 }
