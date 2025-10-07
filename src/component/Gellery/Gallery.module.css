@@ -31,18 +31,6 @@
   transform: translateY(-1px);
 }
 
-.img {
-  width: 100%;
-  height: auto;
-  display: block;
-
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-
-  border-radius: 0;
-  transition: transform 0.3s ease;
-}
-
 .galleryItem:hover .img {
   transform: scale(1.02);
 }
@@ -80,6 +68,17 @@
 }
 .btnDelImg {
   right: 5px;
+}
+.img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+
+  border-radius: 0;
+  transition: transform 0.3s ease;
 }
 .topBar {
   display: flex;

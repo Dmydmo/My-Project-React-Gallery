@@ -6,7 +6,7 @@ import IconButton from '../UI/IconnButton';
 import EmptyGallery from './EmptyGallery';
 import SowerCountImage from './ImagesCounter';
 
-function Gallery({ cards, isLoading, onDelete, changeTitle }) {
+function Gallery({ cards, onDelete, changeTitle, clickLightBox }) {
   const handleDownload = async (src, filename = 'image') => {
     try {
       const res = await fetch(src, { mode: 'cors' });
@@ -49,6 +49,7 @@ function Gallery({ cards, isLoading, onDelete, changeTitle }) {
         {cards.map((card) => (
           <div className={styles.galleryItem} key={card.id}>
             <img
+              onClick={() => clickLightBox(card.id)}
               alt={card.title || 'Gallery image'}
               className={styles.img}
               src={card.url}
@@ -58,7 +59,6 @@ function Gallery({ cards, isLoading, onDelete, changeTitle }) {
               value={card.title}
               title="Change title"
             />
-
             <IconButton
               icon={<RiDeleteBin2Line aria-hidden="true" focusable="false" />}
               onClick={() => onDelete(card.id)}

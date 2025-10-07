@@ -5,12 +5,15 @@ import ImageForm from './component/ImageForm';
 import Gallery from './component/Gellery/Gallery';
 import AddRandomImg from './component/AddRandomImg';
 import Header from './component/Header/Header';
+import LightBox from './component/LightBox/LightBox';
 
 function App() {
   const [cards, setcards] = useState([]);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
-  // const [isLoadingAll, setIsLoadingAll] = useState(false);
+
+  const [islightboxOpen, setislightboxOpen] = useState(false);
+  const [lightboxIndex, setlightboxIndex] = useState(null);
 
   const onToggleMenu = () => {
     setOpenMenu((prev) => !prev);
@@ -52,8 +55,7 @@ function App() {
       id: uuidv4(),
       title,
     };
-    const hasDavid = cards.some((card) => card.url === url);
-    !hasDavid && setcards([newUriObj, ...cards]);
+    !cards.some((card) => card.url === url) && setcards([newUriObj, ...cards]);
   };
 
   const onDelete = (id) => {
@@ -64,6 +66,20 @@ function App() {
     setcards([]);
   };
 
+  const chengIndexLightBox = (index) => {
+    setlightboxIndex(index);
+  };
+
+  const clickLightBox = (id) => {
+    let ind = cards.findIndex((card) => card.id === id);
+    setlightboxIndex(ind);
+    setislightboxOpen(true);
+  };
+
+  const clooseLightBox = () => {
+    setislightboxOpen(false);
+  };
+
   return (
     <div className="App">
       <Header
@@ -71,18 +87,25 @@ function App() {
         isOpenMenu={isOpenMenu}
         onClear={clearGallery}
       />
-
       <ImageForm addImg={addImg} />
       <AddRandomImg
         isLoading={isLoadingRandom}
         handleAddRandom={handleAddRandom}
       />
       <Gallery
-        // isLoading={isLoadingAll}
+        clickLightBox={clickLightBox}
         changeTitle={changeTitleInGallery}
         cards={cards}
         onDelete={onDelete}
       />
+      {islightboxOpen && (
+        <LightBox
+          changeIndex={chengIndexLightBox}
+          cards={cards}
+          lightboxIndex={lightboxIndex}
+          clooseLightBox={clooseLightBox}
+        />
+      )}
     </div>
   );
 }
