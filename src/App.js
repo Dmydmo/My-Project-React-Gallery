@@ -11,9 +11,22 @@ function App() {
   const [cards, setcards] = useState([]);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
-
   const [islightboxOpen, setislightboxOpen] = useState(false);
   const [lightboxIndex, setlightboxIndex] = useState(null);
+  const [filterGallery, setfilterGallery] = useState([]);
+
+  const toRender =
+    filterGallery && filterGallery.length > 0 ? filterGallery : cards;
+  const changeFilterGallery = (filtWord) => {
+    if (filtWord === '') {
+      setfilterGallery([]);
+    } else {
+      const newArr = cards.filter((card) =>
+        card.title.toLowerCase().includes(filtWord.toLowerCase())
+      );
+      setfilterGallery(newArr);
+    }
+  };
 
   const onToggleMenu = () => {
     setOpenMenu((prev) => !prev);
@@ -93,9 +106,10 @@ function App() {
         handleAddRandom={handleAddRandom}
       />
       <Gallery
+        changeFilterGallery={changeFilterGallery}
         clickLightBox={clickLightBox}
         changeTitle={changeTitleInGallery}
-        cards={cards}
+        toRender={toRender}
         onDelete={onDelete}
       />
       {islightboxOpen && (

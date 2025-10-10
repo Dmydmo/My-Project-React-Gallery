@@ -1,12 +1,18 @@
 import { RiDeleteBin2Line, RiDownload2Line } from 'react-icons/ri';
 import styles from './Gallery.module.css';
-import BtnDownloadAll from './BtnDownloadAll';
 import Title from './Title';
 import IconButton from '../UI/IconnButton';
 import EmptyGallery from './EmptyGallery';
-import SowerCountImage from './ImagesCounter';
+import ToolBar from './ToolBar/ToolBar';
+// import { useState } from 'react';
 
-function Gallery({ cards, onDelete, changeTitle, clickLightBox }) {
+function Gallery({
+  toRender,
+  onDelete,
+  changeTitle,
+  clickLightBox,
+  changeFilterGallery,
+}) {
   const handleDownload = async (src, filename = 'image') => {
     try {
       const res = await fetch(src, { mode: 'cors' });
@@ -36,17 +42,16 @@ function Gallery({ cards, onDelete, changeTitle, clickLightBox }) {
 
   return (
     <div>
-      {cards.length > 0 ? (
-        <div className={styles.topBar}>
-          <BtnDownloadAll cards={cards} />
-          <SowerCountImage counter={cards.length} />
-        </div>
+      {toRender.length > 0 ? (
+        <ToolBar
+          changeFilterGallery={changeFilterGallery}
+          toRender={toRender}
+        />
       ) : (
         <EmptyGallery />
       )}
-
       <div className={styles.galleryContainer}>
-        {cards.map((card) => (
+        {toRender.map((card) => (
           <div className={styles.galleryItem} key={card.id}>
             <img
               onClick={() => clickLightBox(card.id)}

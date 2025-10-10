@@ -80,12 +80,3 @@
   border-radius: 0;
   transition: transform 0.3s ease;
 }
-.topBar {
-  display: flex;
-  justify-self: start;
-  align-items: center;
-  background: #151719;
-  border: 1px solid #24272b;
-  border-radius: 12px;
-  padding: 8px 10px;
-}
