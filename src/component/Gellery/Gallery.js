@@ -4,7 +4,7 @@ import Title from './Title';
 import IconButton from '../UI/IconnButton';
 import EmptyGallery from './EmptyGallery';
 import ToolBar from './ToolBar/ToolBar';
-// import { useState } from 'react';
+import EmptyFilter from './EmptyFilter';
 
 function Gallery({
   toRender,
@@ -12,6 +12,8 @@ function Gallery({
   changeTitle,
   clickLightBox,
   changeFilterGallery,
+  query,
+  setQuery,
 }) {
   const handleDownload = async (src, filename = 'image') => {
     try {
@@ -40,16 +42,33 @@ function Gallery({
     }
   };
 
+  if (toRender.length === 0 && query !== '') {
+    return (
+      <div>
+        <ToolBar
+          changeFilterGallery={changeFilterGallery}
+          toRender={toRender}
+          setQuery={setQuery}
+          query={query}
+        />
+        <EmptyFilter query={query} />
+      </div>
+    );
+  }
+
   return (
     <div>
       {toRender.length > 0 ? (
         <ToolBar
           changeFilterGallery={changeFilterGallery}
+          setQuery={setQuery}
           toRender={toRender}
+          query={query}
         />
       ) : (
         <EmptyGallery />
       )}
+
       <div className={styles.galleryContainer}>
         {toRender.map((card) => (
           <div className={styles.galleryItem} key={card.id}>

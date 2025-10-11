@@ -1,0 +1,25 @@
+.divEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+  padding: 30px 16px;
+  border: 1px solid #24272b;
+  border-radius: 12px;
+  background: rgba(21, 23, 25, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  color: #e7ebf3;
+  margin: 10px auto 24px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.divEmpty:hover {
+  border-color: #3e4652;
+}
+
+.h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

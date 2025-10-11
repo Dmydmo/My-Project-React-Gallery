@@ -13,24 +13,7 @@ function App() {
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
   const [islightboxOpen, setislightboxOpen] = useState(false);
   const [lightboxIndex, setlightboxIndex] = useState(null);
-  const [filterGallery, setfilterGallery] = useState([]);
-
-  const toRender =
-    filterGallery && filterGallery.length > 0 ? filterGallery : cards;
-  const changeFilterGallery = (filtWord) => {
-    if (filtWord === '') {
-      setfilterGallery([]);
-    } else {
-      const newArr = cards.filter((card) =>
-        card.title.toLowerCase().includes(filtWord.toLowerCase())
-      );
-      setfilterGallery(newArr);
-    }
-  };
-
-  const onToggleMenu = () => {
-    setOpenMenu((prev) => !prev);
-  };
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const saved = localStorage.getItem('gallery');
@@ -38,10 +21,25 @@ function App() {
       setcards(JSON.parse(saved));
     }
   }, []);
-
   useEffect(() => {
     localStorage.setItem('gallery', JSON.stringify(cards));
   }, [cards]);
+  let toRender;
+
+  const changeFilterGallery = (word) => setQuery(word);
+
+  if (query === '') {
+    toRender = cards;
+  } else {
+    toRender = cards.filter((card) =>
+      card.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
+  console.log(toRender);
+  const onToggleMenu = () => {
+    setOpenMenu((prev) => !prev);
+  };
 
   const handleAddRandom = async () => {
     try {
@@ -106,16 +104,18 @@ function App() {
         handleAddRandom={handleAddRandom}
       />
       <Gallery
-        changeFilterGallery={changeFilterGallery}
+        setQuery={setQuery}
+        query={query}
         clickLightBox={clickLightBox}
         changeTitle={changeTitleInGallery}
+        changeFilterGallery={changeFilterGallery}
         toRender={toRender}
         onDelete={onDelete}
       />
       {islightboxOpen && (
         <LightBox
           changeIndex={chengIndexLightBox}
-          cards={cards}
+          cards={toRender}
           lightboxIndex={lightboxIndex}
           clooseLightBox={clooseLightBox}
         />
@@ -123,5 +123,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

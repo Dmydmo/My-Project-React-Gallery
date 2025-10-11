@@ -3,12 +3,16 @@ import ImagesCounter from './ImagesCounter';
 import Search from './Search';
 import styles from './ToolBar.module.css';
 
-function ToolBar({ toRender, changeFilterGallery }) {
+function ToolBar({ toRender, setQuery, query, changeFilterGallery }) {
   return (
     <div className={styles.topBar}>
       <BtnDownloadAll cards={toRender} />
       <ImagesCounter counter={toRender.length} />
-      <Search changeFilterGallery={changeFilterGallery} />
+      <Search
+        setQuery={setQuery}
+        query={query}
+        changeFilterGallery={changeFilterGallery}
+      />
     </div>
   );
 }
